@@ -10,7 +10,6 @@ ECHO-MAIL is a mass mailing solution that leverages AWS services to efficiently 
 - [Setup](#setup)
 - [Usage](#usage)
 - [Test Event](#test-event)
-- [License](#license)
 
 ## Overview
 
@@ -47,6 +46,9 @@ cd Echo-Mail
 
 2. **Change Inbound Rules**:
    - Update the inbound rules of the security group associated with your EC2 instance to allow traffic on port 5000.
+   - and other ports mentioned
+     ![Screenshot 2024-08-05 231112](https://github.com/user-attachments/assets/29fe48af-0c68-40fd-ab5c-7b5773311f8e)
+
 
 3. **Install Required Software**:
    ```bash
@@ -60,6 +62,14 @@ cd Echo-Mail
 
 5. **Set Up SMTP**:
    - Ensure the SMTP server is properly configured and running on the EC2 instance.
+
+     **running**
+     This will start the flask and ec2 will be ready.
+     ```bash
+     python3 EC2_code.py
+     ``` 
+     ![Screenshot 2024-08-05 181502](https://github.com/user-attachments/assets/6b99fe9c-4a17-45c5-a340-0766bdfcb724)
+
 
 #### Lambda Setup
 
@@ -115,8 +125,28 @@ To test the Lambda function, you can use the test event JSON file provided in th
    - Go to your Lambda function in the AWS Management Console.
    - Click on "Test" and then "Configure test event."
    - Upload the test event JSON file (`TestEvent.json`) from the repository.
-
+  
 2. **Run the Test**:
    - Click on the "Test" button to trigger the Lambda function with the provided test event.
    - Check the output and CloudWatch logs to ensure everything is working correctly.
+
+
+
+
+As we send a PUT request through the API gateway, it will upload the file to S3.and triggers the Lambda function.
+
+**uploading file**     
+
+The format of the CSV file should be:
+![Screenshot 2024-08-15 153025](https://github.com/user-attachments/assets/db4ef39f-e383-4c59-81e9-5a1cad4222d2)
+
+**output in Lambda Function**
+
+![Screenshot 2024-08-06 195725](https://github.com/user-attachments/assets/71fc8f45-ca41-405d-8d77-6c906b2d71f7)
+
+**output in  EC2**
+
+![Screenshot 2024-08-07 164501](https://github.com/user-attachments/assets/347e4265-b6a4-45d3-b6ee-5d1739a1092d)
+
+
 

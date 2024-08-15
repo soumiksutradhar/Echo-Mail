@@ -1,6 +1,6 @@
-# ECHO-MAIL Project
+# ECHO-MAIL
 
-ECHO-MAIL is a mass mailing solution that leverages AWS services to efficiently send emails at scale. This project utilizes AWS Lambda, S3, and EC2 to run an SMTP server.
+> ECHO-MAIL is a mass mailing solution that leverages AWS services to efficiently send emails at scale.
 
 ## Table of Contents
 
@@ -13,7 +13,8 @@ ECHO-MAIL is a mass mailing solution that leverages AWS services to efficiently 
 
 ## Overview
 
-ECHO-MAIL is designed for sending bulk emails efficiently using AWS resources. The project is built to scale, ensuring that emails are delivered reliably.
+ECHO-MAIL is designed for sending bulk emails efficiently using AWS resources (`Lambda`, `S3`, `EC2`). The project is built to scale, ensuring that emails are delivered reliably.
+
 
 ## Architecture
 
@@ -28,47 +29,52 @@ ECHO-MAIL is designed for sending bulk emails efficiently using AWS resources. T
 - AWS Account
 - AWS CLI installed and configured
 - Basic knowledge of AWS services (Lambda, S3, EC2, API Gateway)
-- Docker installed (optional, if using Docker for local testing)
+- Docker (optional, if using Docker for local testing)
 
 ## Setup
 
-### 1. Clone the Repository
+- Clone the Repository
 ```bash
 git clone https://github.com/Atul-Kumar-Rana/Echo-Mail.git
 cd Echo-Mail
 ```
 
-### 2. Set Up AWS Services
+## AWS Configuration
 
-#### EC2 Setup
+### EC2 
 
-1. **Launch an EC2 Instance**: Choose an appropriate instance type and configure security groups to allow SMTP (port 25), HTTP (port 80), and traffic on port 5000.
+1. **Launch an EC2 Instance**: Choose an appropriate instance type and configure security groups to allow `SMTP` (port 25), `HTTP` (port 80), and traffic on port 5000.
 
 2. **Change Inbound Rules**:
-   - Update the inbound rules of the security group associated with your EC2 instance to allow traffic on port 5000.
-   - and other ports mentioned
+   - Update the inbound rules of the security group associated with the EC2 instance to allow traffic on the ports mentioned.
+   
      ![Screenshot 2024-08-05 231112](https://github.com/user-attachments/assets/29fe48af-0c68-40fd-ab5c-7b5773311f8e)
 
 
-3. **Install Required Software**:
+3. **Install Packages**:
+   
    ```bash
-   sudo apt-get update
-   sudo apt-get install python3-pip
-   pip3 install boto3 flask
+   sudo apt-get update && upgrade
+   sudo apt-get install python3.10-venv
+   ```
+   
+4. **Setup Python venv and Script**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install boto3 flask
+   touch EC2_code.py
+   ```
+   
+   Copy the contents of `EC2_code.py` from the repository with any code editor (vim, nano etc.).
+     
+   ```bash
+   python3 EC2_code.py
    ```
 
-4. **Deploy the Code**:
-   - Enter the code present in your repository to set up the SMTP server and the associated Flask application.
+   Run the `EC2_code.py` to start the SMTP server and the associated Flask API to listen for incoming requests.
 
-5. **Set Up SMTP**:
-   - Ensure the SMTP server is properly configured and running on the EC2 instance.
-
-     **running**
-     This will start the flask and ec2 will be ready.
-     ```bash
-     python3 EC2_code.py
-     ``` 
-     ![Screenshot 2024-08-05 181502](https://github.com/user-attachments/assets/6b99fe9c-4a17-45c5-a340-0766bdfcb724)
+   ![Screenshot 2024-08-05 181502](https://github.com/user-attachments/assets/6b99fe9c-4a17-45c5-a340-0766bdfcb724)
 
 
 #### Lambda Setup
@@ -130,14 +136,12 @@ To test the Lambda function, you can use the test event JSON file provided in th
    - Click on the "Test" button to trigger the Lambda function with the provided test event.
    - Check the output and CloudWatch logs to ensure everything is working correctly.
 
-
-
-
-As we send a PUT request through the API gateway, it will upload the file to S3.and triggers the Lambda function.
+As we send a PUT request through the API gateway, it will upload the file to S3 and trigger the Lambda function.
 
 ### File Uploading     
 
-The format of the CSV file should be:
+`CSV file Format`
+
 ![Screenshot 2024-08-15 153025](https://github.com/user-attachments/assets/db4ef39f-e383-4c59-81e9-5a1cad4222d2)
 
 ### Lambda Output
@@ -149,4 +153,10 @@ The format of the CSV file should be:
 ![Screenshot 2024-08-07 164501](https://github.com/user-attachments/assets/347e4265-b6a4-45d3-b6ee-5d1739a1092d)
 
 
+## Roadmap
+
+- [x] Core Functionality
+- [x] UI Design
+- [ ] Application Dashboard
+- [ ] Mailing Report Generation
 

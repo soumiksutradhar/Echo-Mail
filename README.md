@@ -135,16 +135,16 @@ To test the Lambda function, you can use the test event JSON file provided in th
 
 As we send a PUT request through the API gateway, it will upload the file to S3.and triggers the Lambda function.
 
-**uploading file**     
+### File Uploading     
 
 The format of the CSV file should be:
 ![Screenshot 2024-08-15 153025](https://github.com/user-attachments/assets/db4ef39f-e383-4c59-81e9-5a1cad4222d2)
 
-**output in Lambda Function**
+### Lambda Output
 
 ![Screenshot 2024-08-06 195725](https://github.com/user-attachments/assets/71fc8f45-ca41-405d-8d77-6c906b2d71f7)
 
-**output in  EC2**
+### EC2 Console Output
 
 ![Screenshot 2024-08-07 164501](https://github.com/user-attachments/assets/347e4265-b6a4-45d3-b6ee-5d1739a1092d)
 

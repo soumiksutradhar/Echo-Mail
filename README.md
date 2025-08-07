@@ -31,7 +31,7 @@ ECHO-MAIL is designed for sending bulk emails efficiently using AWS resources (`
 - Basic knowledge of AWS services (Lambda, S3, EC2, API Gateway)
 - Docker (optional, if using Docker for local testing)
 
-## Setup
+## Setting up
 
 - Clone the Repository
 ```bash
